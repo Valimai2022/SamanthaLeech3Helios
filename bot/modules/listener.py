@@ -228,9 +228,9 @@ class MirrorLeechListener:
             uptype = "files"
         else:
             uptype = "links"
-        msg = f"<b>Name: </b><code>{escape(name)}</code>\n\n<b>Size: </b>{size}"
+        msg = f"<b>⌈➳📂 File Name : {escape(name)}</b>\n\n<b>⌈➳💽 Size : {size}</b>"
         if BOT_PM and FORCE_BOT_PM and not self.isPrivate:
-            botpm = f"<b>\n\nHey {self.tag}!, I have sent your {uptype} in PM.</b>\n"
+            botpm = f"<b>\n\n🗣️ Hey {self.tag} 👋, I have sent your {uptype} in BOT PM.</b>\n"
             buttons = ButtonMaker()
             b_uname = bot.get_me().username
             botstart = f"http://t.me/{b_uname}"
@@ -248,12 +248,12 @@ class MirrorLeechListener:
                     source_link = message_args[1]
                     if is_magnet(source_link):
                         link = telegraph.create_page(
-                        title='Helios-Mirror Source Link',
+                        title='DreamCatcher Bot Source Link',
                         content=source_link,
                     )["path"]
-                        buttons.buildbutton(f"🔗 Source Link", f"https://graph.org/{link}")
+                        buttons.buildbutton(f"🔗 Source Link 🔗", f"https://graph.org/{link}")
                     else:
-                        buttons.buildbutton(f"🔗 Source Link", source_link)
+                        buttons.buildbutton(f"🔗 Source Link 🔗", source_link)
                 except Exception as e:
                     LOGGER.warning(e)
                 pass
@@ -264,12 +264,12 @@ class MirrorLeechListener:
                             source_link = reply_text.strip()
                             if is_magnet(source_link):
                                 link = telegraph.create_page(
-                                    title='Helios-Mirror Source Link',
+                                    title='DreamCatcher Bot Source Link',
                                     content=source_link,
                                 )["path"]
-                                buttons.buildbutton(f"🔗 Source Link", f"https://graph.org/{link}")
+                                buttons.buildbutton(f"🔗 Source Link 🔗", f"https://graph.org/{link}")
                             else:
-                                buttons.buildbutton(f"🔗 Source Link", source_link)
+                                buttons.buildbutton(f"🔗 Source Link 🔗", source_link)
                     except Exception as e:
                         LOGGER.warning(e)
                         pass
@@ -277,16 +277,16 @@ class MirrorLeechListener:
                 b_name = bot.get_me().username
                 botstart = f"http://t.me/{b_name}"
                 buttons.buildbutton("View file in PM", f"{botstart}")
-            msg += f'\n<b>Total Files: </b>{folders}'
+            msg += f'\n<b>⌈➳🗂️ Total Files : {folders}</b>'
             if typ != 0:
-                msg += f'\n<b>Corrupted Files: </b>{typ}'
-            msg += f'\n<b>cc: </b>{self.tag}\n\n'
+                msg += f'\n<b>⌈➳📚 Corrupted Files : {typ}</b>'
+            msg += f'\n<b>⌈➳🗣️ User : {self.tag}</b>\n\n'
             if not files:
                 sendMessage(msg, self.bot, self.message)
             else:
                 fmsg = ''
                 for index, (link, name) in enumerate(files.items(), start=1):
-                    fmsg += f"{index}. <a href='{link}'>{name}</a>\n"
+                    fmsg += f"<b>{index}. <a href='{link}'>{name}</a></b>\n\n"
                     if len(fmsg.encode() + msg.encode()) > 4000:
                         if FORCE_BOT_PM is False:
                             upldmsg = sendMarkup(msg + fmsg, self.bot, self.message, buttons.build_menu(1))
@@ -310,40 +310,40 @@ class MirrorLeechListener:
                     clean_target(self.newDir)
                 return
         else:
-            msg += f'\n\n<b>Type: </b>{typ}'
+            msg += f'\n<b>⌈➳📦 Type : {typ}</b>'
             if typ == "Folder":
-                msg += f'\n<b>SubFolders: </b>{folders}'
-                msg += f'\n<b>Files: </b>{files}'
+                msg += f'\n<b>⌈➳🗃️ SubFolders : {folders}</b>'
+                msg += f'\n<b>⌈➳🗂️ Files : {files}</b>'
             buttons = ButtonMaker()
-            msg += f'\n\n<b>cc: </b>{self.tag}'
-            buttons.buildbutton("☁️ Drive Link", link)
+            msg += f'\n<b>⌈➳🗣️ User : {self.tag}</b>'
+            buttons.buildbutton("💾 Drive Link 💾", link)
             LOGGER.info(f'Done Uploading {name}')
             if INDEX_URL is not None:
                 url_path = rutils.quote(f'{name}')
                 share_url = f'{INDEX_URL}/{url_path}'
                 if typ == "Folder":
                     share_url += '/'
-                    buttons.buildbutton("⚡ Index Link", share_url)
+                    buttons.buildbutton("🚀 Index Link 🚀", share_url)
                 else:
-                    buttons.buildbutton("⚡ Index Link", share_url)
+                    buttons.buildbutton("🚀 Index Link 🚀", share_url)
                     if VIEW_LINK:
                         share_urls = f'{INDEX_URL}/{url_path}?a=view'
-                        buttons.buildbutton("🌐 View Link", share_urls)
+                        buttons.buildbutton("🌐 View Link 🌐", share_urls)
                     if SOURCE_LINK is True:
                         try:
                             mesg = message_args[1]
                             if is_magnet(mesg):
                                 link = telegraph.create_page(
-                                    title='Helios-Mirror Source Link',
+                                    title='DreamCatcher Bot Source Link',
                                     content=mesg,
                                 )["path"]
-                                buttons.buildbutton(f"🔗 Source Link", f"https://graph.org/{link}")
+                                buttons.buildbutton(f"🔗 Source Link 🔗", f"https://graph.org/{link}")
                             elif is_url(mesg):
                                 source_link = mesg
                                 if source_link.startswith(("|", "pswd: ")):
                                     pass
                                 else:
-                                    buttons.buildbutton(f"🔗 Source Link", source_link)
+                                    buttons.buildbutton(f"🔗 Source Link 🔗", source_link)
                             else:
                                 pass
                         except Exception as e:
@@ -356,12 +356,12 @@ class MirrorLeechListener:
                                 source_link = reply_text.strip()
                                 if is_magnet(source_link):
                                     link = telegraph.create_page(
-                                        title='Helios-Mirror Source Link',
+                                        title='DreamCatcher Bot Source Link',
                                         content=source_link,
                                     )["path"]
-                                    buttons.buildbutton(f"🔗 Source Link", f"https://graph.org/{link}")
+                                    buttons.buildbutton(f"🔗 Source Link 🔗", f"https://graph.org/{link}")
                                 else:
-                                    buttons.buildbutton(f"🔗 Source Link", source_link)
+                                    buttons.buildbutton(f"🔗 Source Link 🔗", source_link)
                         except Exception as e:
                             LOGGER.warning(e)
                             pass
@@ -421,7 +421,7 @@ class MirrorLeechListener:
             except Exception as e:
                 LOGGER.error(str(e))
             count = len(download_dict)
-        msg = f"{self.tag} your download has been stopped due to: {error}"
+        msg = f"<b>☠️ {self.tag} Your Download Has Been Stopped Due to : {error}</b>"
         errmsg = sendMessage(msg, self.bot, self.message)
         Thread(target=auto_delete_upload_message, args=(self.bot, self.message, errmsg)).start()
         if count == 0:
