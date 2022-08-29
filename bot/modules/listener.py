@@ -276,11 +276,11 @@ class MirrorLeechListener:
             if BOT_PM is True and FORCE_BOT_PM is False:
                 b_name = bot.get_me().username
                 botstart = f"http://t.me/{b_name}"
-                buttons.buildbutton("View file in PM", f"{botstart}")
+                buttons.buildbutton("👁️ 𝗩𝗶𝗲𝘄 𝗙𝗶𝗹𝗲 𝗜𝗻 𝗕𝗼𝘁 𝗣𝗺 👁️", f"{botstart}")
             msg += f'\n<b>⌈➳🗂️ Total Files : {folders}</b>'
             if typ != 0:
                 msg += f'\n<b>⌈➳📚 Corrupted Files : {typ}</b>'
-            msg += f'\n<b>⌈➳🗣️ User : {self.tag}</b>\n\n'
+            msg += f'\n<b>⌈➳🗣️ User : {self.tag}\n\n⌈➳🎭 𝐎𝐖𝐍𝐄𝐑 : #𝗪𝗵𝗶𝘁𝗘_𝗗𝗲𝘃𝗶𝗟𝟬𝟵</b>\n\n'
             if not files:
                 sendMessage(msg, self.bot, self.message)
             else:
@@ -295,6 +295,7 @@ class MirrorLeechListener:
                         fmsg = ''
                 if fmsg != '':
                     if FORCE_BOT_PM is False:
+                        fmsg += "📂 𝘾𝙝𝙚𝙘𝙠 𝙔𝙤𝙪𝙧 𝙁𝙞𝙡𝙚 𝙄𝙣 𝘽𝙤𝙩 𝙋𝙈 𝙊𝙧 𝙇𝙤𝙜 𝘾𝙝𝙖𝙣𝙣𝙚𝙡...!!!"
                         upldmsg = sendMarkup(msg + fmsg, self.bot, self.message, buttons.build_menu(1))
                         Thread(target=auto_delete_upload_message, args=(self.bot, self.message, upldmsg)).start()
                 if LEECH_LOG and FORCE_BOT_PM:
@@ -315,7 +316,7 @@ class MirrorLeechListener:
                 msg += f'\n<b>⌈➳🗃️ SubFolders : {folders}</b>'
                 msg += f'\n<b>⌈➳🗂️ Files : {files}</b>'
             buttons = ButtonMaker()
-            msg += f'\n<b>⌈➳🗣️ User : {self.tag}</b>'
+            msg += f'\n<b>⌈➳🗣️ User : {self.tag}\n\n⌈➳🎭 𝐎𝐖𝐍𝐄𝐑 : #𝗪𝗵𝗶𝘁𝗘_𝗗𝗲𝘃𝗶𝗟𝟬𝟵</b>'
             buttons.buildbutton("💾 Drive Link 💾", link)
             LOGGER.info(f'Done Uploading {name}')
             if INDEX_URL is not None:
