@@ -154,8 +154,8 @@ def get_readable_message():
             else:
                 msg += f"\n<b>Size: </b>{download.size()}"
             if download.message.chat.type != 'private':
-                uname =<a href="https://t.me/c/{str(download.message.chat.id)[4:]}/{download.message.message_id}">{download.message.from_user.first_name}</a>
-                msg += f"\n<b><a href='{download.message.link}'>Source</a>:</b> {uname} | <b>Id :</b> <code>{download.message.from_user.id}</code>"
+                #uname =<a href="https://t.me/c/{str(download.message.chat.id)[4:]}/{download.message.message_id}">{download.message.from_user.first_name}</a>
+                msg += f'\n<b>⌈➳🗣️ USER : <a href="https://t.me/c/{str(download.message.chat.id)[4:]}/{download.message.message_id}">{download.message.from_user.first_name}</a></b>' 
             else:
                 msg += ''
             msg += f"\n<code>/{BotCommands.CancelMirror} {download.gid()}</code>"
