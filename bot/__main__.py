@@ -64,10 +64,10 @@ Type /{BotCommands.HelpCommand} to get a list of available commands
 '''
         sendMarkup(start_string, context.bot, update.message, reply_markup)
     else:
-        sendMarkup('Not an Authorized user, deploy your own helios-mirror-leech bot', context.bot, update.message, reply_markup)
+        sendMarkup('Not an Authorized user', context.bot, update.message, reply_markup)
 
 def restart(update, context):
-    restart_message = sendMessage("Restarting...", context.bot, update.message)
+    restart_message = sendMessage("<b>Restarting...</b>", context.bot, update.message)
     if Interval:
         Interval[0].cancel()
         Interval.clear()
@@ -153,7 +153,7 @@ Hei, Need Help!!
 '''
 try:
     help = telegraph.create_page(
-        title='Helios-Mirror Help',
+        title='<b>WhitE_DeviL09 Mirror Help</b>',
         content=help_string_telegraph,
     )["path"]
 except Exception as err:
@@ -161,7 +161,7 @@ except Exception as err:
     pass
 def bot_help(update, context):
     button = ButtonMaker()
-    button.buildbutton("Click Here", f"https://graph.org/{help}")
+    button.buildbutton("<b>Click Here</b>", f"https://graph.org/{help}")
     reply_markup = button.build_menu(1)
     sendMarkup(help_string, context.bot, update.message, reply_markup)
 def main():
@@ -173,15 +173,15 @@ def main():
                 if ospath.isfile(".restartmsg"):
                     with open(".restartmsg") as f:
                         chat_id, msg_id = map(int, f)
-                    msg = 'Restarted Successfully!'
+                    msg = '<b>Restarted Successfully! ✅</b>'
                 else:
-                    msg = 'Bot Restarted!'
+                    msg = '<b>🤖 Bot Restarted ✅</b>'
                 for tag, links in data.items():
-                     msg += f"\n\n{tag}: "
+                     msg += f"\n\n<b>🗣️ {tag} Your In Complete Task List :</b>"
                      for index, link in enumerate(links, start=1):
-                         msg += f" <a href='{link}'>{index}</a> |"
+                         msg += f" <b><a href='{link}'>{index}</a> |</b>"
                          if len(msg.encode()) > 4000:
-                             if 'Restarted Successfully!' in msg and cid == chat_id:
+                             if '<b>Restarted Successfully ✅</b>' in msg and cid == chat_id:
                                  bot.editMessageText(msg, chat_id, msg_id, parse_mode='HTML', disable_web_page_preview=True)
                                  osremove(".restartmsg")
                              else:
@@ -202,7 +202,7 @@ def main():
     if ospath.isfile(".restartmsg"):
         with open(".restartmsg") as f:
             chat_id, msg_id = map(int, f)
-        bot.edit_message_text("Restarted Successfully!", chat_id, msg_id)
+        bot.edit_message_text("<b>Restarted Successfully ✅</b>", chat_id, msg_id)
         osremove(".restartmsg")
     elif not notifier_dict and AUTHORIZED_CHATS:
         for id_ in AUTHORIZED_CHATS:
