@@ -159,7 +159,7 @@ def get_readable_message():
             else:
                 msg += ''
             msg += f"\n<b>⌈➳❌ Cancel :</b> <code>/{BotCommands.CancelMirror} {download.gid()}</code>"
-            msg += "\n"
+            msg += "\n\n"
             if STATUS_LIMIT is not None and index == STATUS_LIMIT:
                 break
         if len(msg) == 0:
@@ -185,7 +185,7 @@ def get_readable_message():
                     up_speed += float(spd.split('K')[0]) * 1024
                 elif 'M' in spd:
                     up_speed += float(spd.split('M')[0]) * 1048576
-        bmsg = f"\n<b>__________________________________</b>"
+        bmsg = f"<b>__________________________________</b>"
         bmsg += f"\n<b>⌈➳⌚ 𝐁𝐎𝐓 𝐔𝐏 𝐓𝐈𝐌𝐄 : {get_readable_time(time() - botStartTime)}</b>"
         #bmsg += f"\n<b>⌈➳🖥️ CPU : {cpu_percent()}% | ⌈➳🛠️ FREE : {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}</b>"
         #bmsg += f"\n<b>⌈➳💾 RAM : {virtual_memory().percent}% | ⌈➳🏮 UPTIME : {get_readable_time(time() - botStartTime)}</b>"
