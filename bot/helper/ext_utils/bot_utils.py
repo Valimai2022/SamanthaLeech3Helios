@@ -186,7 +186,7 @@ def get_readable_message():
                 elif 'M' in spd:
                     up_speed += float(spd.split('M')[0]) * 1048576
         bmsg = f"<b>__________________________________</b>"
-        bmsg += f"\n<b>⌈➳🏮 NEXT BOT RESTART TIME : {get_readable_time(time() - botStartTime)}</b>"
+        bmsg += f"\n<b>⌈➳⌚ 𝐁𝐎𝐓 𝐔𝐏 𝐓𝐈𝐌𝐄 : {get_readable_time(time() - botStartTime)}</b>"
         #bmsg += f"\n<b>⌈➳🖥️ CPU : {cpu_percent()}% | ⌈➳🛠️ FREE : {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}</b>"
         #bmsg += f"\n<b>⌈➳💾 RAM : {virtual_memory().percent}% | ⌈➳🏮 UPTIME : {get_readable_time(time() - botStartTime)}</b>"
         #bmsg += f"\n<b>⌈➳🔻 DL : {get_readable_file_size(dl_speed)}/s | ⌈➳🔺 UL : {get_readable_file_size(up_speed)}/s</b>"
