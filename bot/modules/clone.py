@@ -61,7 +61,7 @@ def _clone(message, bot):
     is_appdrive = is_appdrive_link(link)
     is_gdtot = is_gdtot_link(link)
     if is_appdrive:
-        msg = sendMessage(f"Processing: <code>{link}</code>", bot, message)
+        msg = sendMessage(f"<b>♻️ Processing : {link}</b>", bot, message)
         try:
             link = appdrive(link)
             deleteMessage(bot, msg)
@@ -70,7 +70,7 @@ def _clone(message, bot):
             return sendMessage(str(e), bot, message)
     if is_gdtot:
         try:
-            msg = sendMessage(f"Processing: <code>{link}</code>", bot, message)
+            msg = sendMessage(f"<b>♻️ Processing : {link}</b>", bot, message)
             link = gdtot(link)
             deleteMessage(bot, msg)
         except DirectDownloadLinkException as e:
@@ -85,7 +85,7 @@ def _clone(message, bot):
             LOGGER.info('Checking File/Folder if already in Drive...')
             smsg, button = gd.drive_list(name, True, True)
             if smsg:
-                msg3 = "File/Folder is already available in Drive.\nHere are the search results:"
+                msg3 = "<b>📂 File/Folder is already available in Drive.\nHere are the search results 👇</b>"
                 return sendMarkup(msg3, bot, message, button)
         if CLONE_LIMIT is not None:
             LOGGER.info('Checking File/Folder Size...')
@@ -100,7 +100,7 @@ def _clone(message, bot):
             sleep(4)
             Thread(target=_clone, args=(nextmsg, bot)).start()
         if files <= 20:
-            msg = sendMessage(f"Cloning: <code>{link}</code>", bot, message)
+            msg = sendMessage(f"<b>🔁 Cloning to Drive : {link}</b>", bot, message)
             result, button = gd.clone(link)
             deleteMessage(bot, msg)
             if BOT_PM and FORCE_BOT_PM:
@@ -175,7 +175,7 @@ def _clone(message, bot):
                 LOGGER.warning(e)
                 return
     else:
-        sendMessage("Send Gdrive or Gdtot or Appdrive link along with command or by replying to the link by command\n\n<b>Multi links only by replying to first link/file:</b>\n<code>/cmd</code> 10(number of links/files)", bot, message)
+        sendMessage("📨 Send Gdrive or Gdtot or Appdrive link along with command or by replying to the link by command 🤒\n\n<b>Multi links only by replying to first link/file:</b>\n<code>/cmd</code> 10(number of links/files)", bot, message)
 
 @new_thread
 def cloneNode(update, context):
