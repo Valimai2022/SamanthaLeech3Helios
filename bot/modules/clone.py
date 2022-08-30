@@ -148,7 +148,7 @@ def _clone(message, bot):
                     update_all_messages()
             except IndexError:
                 pass
-        cc = f'\n<b>⌈➳🗣️ User : </b>{tag}\n\n⌈➳🎭 𝐎𝐖𝐍𝐄𝐑 : #𝗪𝗵𝗶𝘁𝗘_𝗗𝗲𝘃𝗶𝗟𝟬𝟵'
+        cc = f'\n<b>⌈➳🗣️ User : {tag}\n\n⌈➳🎭 𝐎𝐖𝐍𝐄𝐑 : #𝗪𝗵𝗶𝘁𝗘_𝗗𝗲𝘃𝗶𝗟𝟬𝟵</b>'
         if button in ["cancelled", ""]:
             sendMessage(f"{tag} {result}", bot, message)
         else:
