@@ -338,49 +338,49 @@ class GoogleDriveHelper:
                     LOGGER.info("Deleting cloned data from Drive...")
                     self.deletefile(durl)
                     return "your clone has been stopped and cloned data has been deleted!", "cancelled"
-                msg += f'<b>Name: </b><code>{meta.get("name")}</code>'
-                msg += f'\n\n<b>Size: </b>{get_readable_file_size(self.transferred_size)}'
-                msg += '\n\n<b>Type: </b>Folder'
-                msg += f'\n<b>SubFolders: </b>{self.__total_folders}'
-                msg += f'\n<b>Files: </b>{self.__total_files}'
+                msg += f'<b>⌈➳📂 File Name : {meta.get("name")}</b>'
+                msg += f'\n\n<b>⌈➳💽 Size : {get_readable_file_size(self.transferred_size)}</b>'
+                msg += '\n<b>⌈➳📦 Type : Folder</b>'
+                msg += f'\n<b>⌈➳🗂️ SubFolders : {self.__total_folders}</b>'
+                msg += f'\n<b>⌈➳🗃️ Files : {self.__total_files}</b>'
                 buttons = ButtonMaker()
-                buttons.buildbutton("☁️ Drive Link", durl)
+                buttons.buildbutton("💾 Drive Link 💾", durl)
                 if INDEX_URL is not None:
                     url_path = rquote(f'{meta.get("name")}', safe='')
                     url = f'{INDEX_URL}/{url_path}/'
-                    buttons.buildbutton("⚡ Index Link", url)
+                    buttons.buildbutton("🚀 Index Link 🚀", url)
             else:
                 file = self.__copyFile(meta.get('id'), parent_id)
-                msg += f'<b>Name: </b><code>{file.get("name")}</code>'
+                msg += f'<b>⌈➳📂 File Name : {file.get("name")}</b>'
                 durl = self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file.get("id"))
                 buttons = ButtonMaker()
-                buttons.buildbutton("☁️ Drive Link", durl)
+                buttons.buildbutton("💾 Drive Link 💾", durl)
                 if mime_type is None:
                     mime_type = 'File'
-                msg += f'\n\n<b>Size: </b>{get_readable_file_size(int(meta.get("size", 0)))}'
-                msg += f'\n\n<b>Type: </b>{mime_type}'
+                msg += f'\n\n<b>⌈➳💽 Size : {get_readable_file_size(int(meta.get("size", 0)))}</b>'
+                msg += f'\n<b>⌈➳📦 Type : {mime_type}</b>'
                 if INDEX_URL is not None:
                     url_path = rquote(f'{file.get("name")}', safe='')
                     url = f'{INDEX_URL}/{url_path}'
-                    buttons.buildbutton("⚡ Index Link", url)
+                    buttons.buildbutton("🚀 Index Link 🚀", url)
                     if VIEW_LINK:
                         urls = f'{INDEX_URL}/{url_path}?a=view'
-                        buttons.buildbutton("🌐 View Link", urls)
+                        buttons.buildbutton("🌐 View Link 🌐", urls)
                     if SOURCE_LINK is True:
-                        buttons.buildbutton(f"🔗 Source Link", link)
+                        buttons.buildbutton(f"🔗 Source Link 🔗", link)
         except Exception as err:
             if isinstance(err, RetryError):
                 LOGGER.info(f"Total Attempts: {err.last_attempt.attempt_number}")
                 err = err.last_attempt.exception()
             err = str(err).replace('>', '').replace('<', '')
             if "User rate limit exceeded" in err:
-                msg = "User rate limit exceeded."
+                msg = "<b>User Rate Limit Exceeded</b>"
             elif "File not found" in err:
                 token_service = self.__alt_authorize()
                 if token_service is not None:
                     self.__service = token_service
                     return self.clone(link)
-                msg = "File not found."
+                msg = "<b>❌ File not Found 🤨</b>"
             else:
                 msg = f"Error.\n{err}"
             return msg, ""
@@ -647,9 +647,9 @@ class GoogleDriveHelper:
         if len(path) > 1:
             telegraph.edit_telegraph(path, telegraph_content)
 
-        msg = f"<b>Found {contents_count} result for <i>{fileName}</i></b>"
+        msg = f"<b>📂 Found {contents_count} Result For : {fileName} 👇</b>"
         buttons = ButtonMaker()
-        buttons.buildbutton("🔎 Click Here to View", f"https://graph.org/{path[0]}")
+        buttons.buildbutton("🔎 Click Here to View 🔍", f"https://graph.org/{path[0]}")
 
         return msg, (buttons.build_menu(1))
     def count(self, link):
