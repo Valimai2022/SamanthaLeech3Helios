@@ -21,10 +21,10 @@ def getleechinfo(from_user):
         or user_id not in AS_MEDIA_USERS
         and AS_DOCUMENT
     ):
-        ltype = "DOCUMENT"
+        ltype = "DOCUMENT 📂"
         buttons.sbutton("🖥️ Send As Media 🖥️", f"leechset {user_id} med")
     else:
-        ltype = "MEDIA"
+        ltype = "MEDIA 🖥️"
         buttons.sbutton("📂 Send As Document 📂", f"leechset {user_id} doc")
 
     if ospath.exists(thumbpath):
