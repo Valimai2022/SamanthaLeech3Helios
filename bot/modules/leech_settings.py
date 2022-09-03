@@ -107,7 +107,7 @@ def setThumb(update, context):
         osremove(photo_dir)
         if DB_URI is not None:
             DbManger().user_save_thumb(user_id, des_dir)
-        msg = f"🖼️ Custom thumbnail Saved For {update.message.from_user.mention_html(update.message.from_user.first_name)}✅</b>"
+        msg = f"<b>🖼️ Custom thumbnail Saved For {update.message.from_user.mention_html(update.message.from_user.first_name)}✅</b>"
         sendMessage(msg, context.bot, update.message)
     else:
         sendMessage("<b>✒️ Reply to a Photo to Save Custom Thumbnail ❌</b>", context.bot, update.message)
